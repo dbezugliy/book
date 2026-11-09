@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Book Club</title>
 <style>
-@font-face{font-family:"Boldstrom";src:url("Boldstrom.otf") format("opentype");font-display:swap}
+@font-face{font-family:"Boldstrom";src:url("Boldstrom.otf?v=2") format("opentype");font-display:swap}
 :root{
   --bg:#d9d1bd;
   --hi:#e9e3d2;
@@ -128,7 +128,7 @@ textarea.title.edit-input{resize:none;overflow:hidden;display:none;padding:.1rem
   </div>
 
   <section class="tools edit-only" id="tools">
-    <label for="pdfIn">Google Drive PDF link</label>
+    <label for="pdfIn">Google Drive PDF link (current book)</label>
     <input class="edit-input" id="pdfIn" type="url" placeholder="Paste the Drive share link" autocomplete="off">
     <p>Links for earlier books can be fixed in History while editing.</p>
     <button class="btn" id="newBtn" type="button">Start new book</button>
