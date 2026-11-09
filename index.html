@@ -72,7 +72,7 @@ textarea.title.edit-input{resize:none;overflow:hidden;display:none;padding:.1rem
 .cover-empty[hidden]{display:none}
 .overlay{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:1}
 .cover-tag{position:absolute;top:.4rem;left:.4rem;background:var(--ink);color:var(--bg);padding:.2rem .45rem;font:400 .8rem var(--display);pointer-events:none}
-#stickerBox{--s:clamp(7.5rem,36vw,9.5rem);position:absolute;right:.3rem;top:calc(var(--s) * -0.55);width:var(--s);aspect-ratio:1;transform:rotate(-9deg);z-index:20}
+#stickerBox{--s:clamp(7.5rem,36vw,9.5rem);position:absolute;right:.3rem;top:calc(var(--s) * -0.55);width:var(--s);aspect-ratio:1;transform:rotate(-9deg);z-index:5}
 #stickerBox[hidden]{display:none}
 #sticker{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink)}
 #sticker svg{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(1px 2px 2px rgba(0,0,0,.3))}
@@ -122,14 +122,13 @@ textarea.title.edit-input{resize:none;overflow:hidden;display:none;padding:.1rem
       <div id="sticker">
         <span id="stickerLabel">finish by</span>
         <span class="view-only" id="stickerText"></span>
-        <input class="edit-only" id="dueIn" type="text" maxlength="14" placeholder="MAY 9th" aria-label="Due date text" autocomplete="off">
+        <input class="edit-only" id="dueIn" type="text" maxlength="14" aria-label="Due date text" autocomplete="off">
       </div>
     </div>
   </div>
 
   <section class="tools edit-only" id="tools">
-    <p>Editing. Tap the cover to change it. Type the due date as you want it shown, like MAY 9th. Changes save automatically.</p>
-    <label for="pdfIn">Google Drive PDF link (current book)</label>
+    <label for="pdfIn">Google Drive PDF link</label>
     <input class="edit-input" id="pdfIn" type="url" placeholder="Paste the Drive share link" autocomplete="off">
     <p>Links for earlier books can be fixed in History while editing.</p>
     <button class="btn" id="newBtn" type="button">Start new book</button>
