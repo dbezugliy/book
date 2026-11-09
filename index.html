@@ -10,18 +10,18 @@
   --bg:#d9d1bd;
   --hi:#e9e3d2;
   --ink:#000;
-  --green:#7fa05a;
+  --sticker:#f9c66d;
   --line:3px;
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
   --display:"Boldstrom",Impact,"Arial Black",sans-serif;
 }
 *{box-sizing:border-box;margin:0}
 html{background:var(--bg)}
-body{background:var(--bg);color:var(--ink);font-family:var(--serif);min-height:100vh;border-bottom:var(--line) solid var(--ink)}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);font-weight:400;min-height:100vh;border-bottom:var(--line) solid var(--ink)}
 :focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 
 /* top bar */
-.bar{position:relative;display:grid;grid-template-columns:1fr 1fr;border-bottom:var(--line) solid var(--ink)}
+.bar{position:relative;z-index:6;display:grid;grid-template-columns:1fr 1fr;border-bottom:var(--line) solid var(--ink)}
 .cell{font:400 .8rem/1 var(--display);letter-spacing:.08em;text-transform:uppercase;background:none;color:inherit;border:0;border-radius:0;padding:.55rem 0;cursor:pointer}
 .cell+.cell{border-left:var(--line) solid var(--ink)}
 .cell:hover{background:var(--hi)}
@@ -32,6 +32,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--serif);min-height:1
 .hist-item+.hist-item,.hist-empty+.hist-item{border-top:2px solid var(--ink)}
 a.hist-item:hover{background:var(--hi)}
 .hist-item small{display:block;font-size:.9rem}
+strong{font-weight:400}
 .hist-item .edit-input{margin-top:.3rem;font-size:.95rem}
 .hist-empty{padding:.45rem .65rem}
 
@@ -41,19 +42,17 @@ a.hist-item:hover{background:var(--hi)}
 #msg{padding:.5rem .65rem;font-weight:700}
 #msg[hidden]{display:none}
 
-.title{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,12.5vw,5.6rem);line-height:.95;text-transform:uppercase;overflow-wrap:anywhere}
-.meta{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;margin-top:.5rem;font-family:var(--display);font-size:1.05rem;letter-spacing:.02em}
-#yearView{flex:none}
+.title{position:relative;z-index:3;font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,12.5vw,5.6rem);line-height:.95;text-transform:uppercase;overflow-wrap:anywhere}
+.meta{position:relative;z-index:1;display:flex;align-items:baseline;margin-top:.5rem;font-size:1.05rem;letter-spacing:.02em}
 
 /* editing fields */
 .edit-only{display:none}
 .editing .edit-only{display:block}
 .editing .view-only{display:none}
 .edit-input{font:inherit;color:inherit;background:var(--hi);border:2px dashed var(--ink);border-radius:0;padding:.15rem .3rem;width:100%}
-textarea.title{resize:none;overflow:hidden;display:none;padding:.1rem .25rem}
-.editing textarea.title{display:block}
+textarea.title.edit-input{resize:none;overflow:hidden;display:none;padding:.1rem .25rem;font-family:var(--display);line-height:.95;text-transform:uppercase;overflow-wrap:anywhere}
+.editing textarea.title.edit-input{display:block}
 #authorIn{flex:1}
-#yearIn{width:5rem;flex:none;text-align:right}
 
 /* cover + sticker */
 .cover{position:relative;max-width:28rem;margin:.9rem auto 1.2rem}
@@ -62,22 +61,23 @@ textarea.title{resize:none;overflow:hidden;display:none;padding:.1rem .25rem}
 #coverImg[hidden]{display:none}
 .cover-empty{aspect-ratio:2/3;border:var(--line) solid var(--ink);border-radius:14px;display:grid;place-items:center;text-align:center;padding:.5rem;font-size:1.05rem}
 .cover-empty[hidden]{display:none}
-.overlay{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:3}
+.overlay{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:1}
 .cover-tag{position:absolute;top:.4rem;left:.4rem;background:var(--ink);color:var(--bg);padding:.2rem .45rem;font:400 .8rem var(--display);pointer-events:none}
-#stickerBox{position:absolute;right:-.2rem;bottom:-.6rem;width:clamp(8.5rem,40vw,11rem);aspect-ratio:1;transform:rotate(-9deg);z-index:4}
+#stickerBox{--s:clamp(7.5rem,36vw,9.5rem);position:absolute;right:.3rem;top:calc(var(--s) * -0.667);width:var(--s);aspect-ratio:1;transform:rotate(-9deg);z-index:2}
+.editing #stickerBox{z-index:4}
 #stickerBox[hidden]{display:none}
 #sticker{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink)}
 #sticker svg{position:absolute;inset:0;width:100%;height:100%}
-#stickerText{position:relative;font:400 1.1rem var(--display);letter-spacing:.03em;white-space:nowrap}
-#dueIn{position:relative;width:68%;text-align:center;font:400 1.1rem var(--display);color:var(--ink);background:transparent;border:2px dashed var(--ink);border-radius:0;padding:.1rem .2rem}
+#stickerText{position:relative;font:400 1.4rem var(--display);letter-spacing:.02em;white-space:nowrap}
+#dueIn{position:relative;width:80%;text-align:center;font:400 1.4rem var(--display);color:var(--ink);background:transparent;border:2px dashed var(--ink);border-radius:0;padding:.05rem .1rem}
 
 /* edit tools */
 .tools{margin-top:.5rem;border:var(--line) solid var(--ink);padding:.5rem;gap:.4rem}
 .editing .tools{display:grid}
 .tools p{font-size:.95rem;line-height:1.3}
-.tools label{font-weight:700}
+.tools label{font-weight:400}
 .tools .edit-input{font-size:1rem}
-.btn{font:700 1rem var(--serif);color:var(--ink);background:var(--bg);border:var(--line) solid var(--ink);border-radius:0;padding:.4rem .6rem;cursor:pointer}
+.btn{font:400 1rem var(--display);color:var(--ink);background:var(--bg);border:var(--line) solid var(--ink);border-radius:0;padding:.4rem .6rem;cursor:pointer}
 .btn:hover{background:var(--ink);color:var(--bg)}
 #saveState{min-height:1.3em;font-size:.95rem}
 </style>
@@ -98,9 +98,7 @@ textarea.title{resize:none;overflow:hidden;display:none;padding:.1rem .25rem}
 
   <div class="meta">
     <span class="view-only" id="authorView"></span>
-    <span class="view-only" id="yearView"></span>
     <input class="edit-input edit-only" id="authorIn" type="text" aria-label="Author" maxlength="80">
-    <input class="edit-input edit-only" id="yearIn" type="text" inputmode="numeric" maxlength="4" aria-label="Year">
   </div>
 
   <div class="cover">
@@ -145,7 +143,7 @@ const db = getFirestore(initializeApp(firebaseConfig));
 const ref = doc(db, "club", "state");
 const $ = id => document.getElementById(id);
 
-const BLANK = {title:"Your Book Title", author:"Author Name", year:"", due:"", pdf:"", cover:""};
+const BLANK = {title:"Your Book Title", author:"Author Name", due:"", pdf:"", cover:""};
 const NEW_BOOK = {...BLANK, title:"New Book"};
 
 let state = {current:{...BLANK}, history:[]};
@@ -187,8 +185,8 @@ function fitSticker(){
   const box = $("stickerBox");
   if (box.hidden || !box.clientWidth) return;
   const el = editing ? $("dueIn") : $("stickerText");
-  const maxW = box.clientWidth * 0.68;
-  let size = Math.max(15, Math.min(window.innerWidth * 0.048, 22));
+  const maxW = box.clientWidth * 0.8;
+  let size = Math.max(18, Math.min(window.innerWidth * 0.065, 30));
   el.style.fontSize = size + "px";
   const over = () => editing ? el.scrollWidth > el.clientWidth : el.offsetWidth > maxW;
   while (over() && size > 9){
@@ -208,7 +206,7 @@ function fitAll(){ fitTitle(); fitSticker(); }
   }
   $("sticker").insertAdjacentHTML("afterbegin",
     '<svg viewBox="0 0 100 100" aria-hidden="true"><polygon points="' + pts.join(" ") +
-    '" fill="var(--green)" stroke="#000" stroke-width="2.5" stroke-linejoin="miter"/></svg>');
+    '" fill="var(--sticker)" stroke="#000" stroke-width="2.5" stroke-linejoin="miter"/></svg>');
 })();
 
 /* ---------- saving ---------- */
@@ -262,10 +260,9 @@ function render(){
 
   $("titleView").textContent = c.title || "Untitled";
   $("authorView").textContent = c.author || "";
-  $("yearView").textContent = c.year || "";
   $("stickerText").textContent = c.due || "";
 
-  const fields = [["titleIn","title"],["authorIn","author"],["yearIn","year"],["dueIn","due"],["pdfIn","pdf"]];
+  const fields = [["titleIn","title"],["authorIn","author"],["dueIn","due"],["pdfIn","pdf"]];
   for (const [id, key] of fields){
     const el = $(id);
     if (document.activeElement !== el) el.value = c[key] || "";
@@ -314,7 +311,7 @@ function render(){
       const t = document.createElement("strong");
       t.textContent = b.title || "Untitled";
       el.append(t);
-      const sub = [b.author, b.year].filter(Boolean).join(", ");
+      const sub = b.author || "";
       if (sub){
         const s = document.createElement("small");
         s.textContent = sub;
@@ -380,7 +377,6 @@ $("titleIn").addEventListener("keydown", e => {
   if (e.key === "Enter"){ e.preventDefault(); e.target.blur(); }
 });
 $("authorIn").addEventListener("input", e => queue("author", e.target.value));
-$("yearIn").addEventListener("input", e => queue("year", e.target.value.replace(/\D/g, "")));
 $("dueIn").addEventListener("input", e => {
   queue("due", e.target.value);
   fitSticker();
@@ -421,7 +417,7 @@ $("newBtn").addEventListener("click", async () => {
   await flush();
   try {
     await updateDoc(ref, {
-      history: arrayUnion({title:c.title || "Untitled", author:c.author || "", year:c.year || "", pdf:c.pdf || ""}),
+      history: arrayUnion({title:c.title || "Untitled", author:c.author || "", pdf:c.pdf || ""}),
       current: {...NEW_BOOK}
     });
     setSave("New book started");
