@@ -22,61 +22,62 @@ body{background:var(--bg);color:var(--ink);font-family:var(--serif);min-height:1
 
 /* top bar */
 .bar{position:relative;display:grid;grid-template-columns:1fr 1fr;border-bottom:var(--line) solid var(--ink)}
-.cell{font:700 1rem/1 var(--serif);letter-spacing:.14em;text-transform:uppercase;background:none;color:inherit;border:0;border-radius:0;padding:1.15rem 0;cursor:pointer}
+.cell{font:400 .8rem/1 var(--display);letter-spacing:.08em;text-transform:uppercase;background:none;color:inherit;border:0;border-radius:0;padding:.55rem 0;cursor:pointer}
 .cell+.cell{border-left:var(--line) solid var(--ink)}
 .cell:hover{background:var(--hi)}
 .editing #editBtn{background:var(--ink);color:var(--bg)}
 #histPanel{position:absolute;left:0;right:0;top:calc(100% + var(--line));z-index:5;background:var(--bg);border-bottom:var(--line) solid var(--ink);max-height:60vh;overflow:auto}
 #histPanel[hidden]{display:none}
-.hist-item{display:block;padding:.85rem 1.25rem;color:inherit;text-decoration:none;font-size:1.05rem;line-height:1.3}
+.hist-item{display:block;padding:.45rem .65rem;color:inherit;text-decoration:none;font-size:1rem;line-height:1.25}
 .hist-item+.hist-item,.hist-empty+.hist-item{border-top:2px solid var(--ink)}
 a.hist-item:hover{background:var(--hi)}
-.hist-item small{display:block;font-size:.95rem}
-.hist-empty{padding:.85rem 1.25rem}
+.hist-item small{display:block;font-size:.9rem}
+.hist-item .edit-input{margin-top:.3rem;font-size:.95rem}
+.hist-empty{padding:.45rem .65rem}
 
 /* page */
-.wrap{max-width:46rem;margin:0 auto;padding:1.25rem 1.25rem 3rem}
+.wrap{max-width:46rem;margin:0 auto;padding:.65rem .65rem 1.5rem}
 .loading .wrap{visibility:hidden}
-#msg{padding:1rem 1.25rem;font-weight:700}
+#msg{padding:.5rem .65rem;font-weight:700}
 #msg[hidden]{display:none}
 
 .title{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,12.5vw,5.6rem);line-height:.95;text-transform:uppercase;overflow-wrap:anywhere}
-.meta{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-top:1rem;font-size:1.15rem}
+.meta{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;margin-top:.5rem;font-family:var(--display);font-size:1.05rem;letter-spacing:.02em}
 #yearView{flex:none}
 
 /* editing fields */
 .edit-only{display:none}
 .editing .edit-only{display:block}
 .editing .view-only{display:none}
-.edit-input{font:inherit;color:inherit;background:var(--hi);border:2px dashed var(--ink);border-radius:0;padding:.3rem .5rem;width:100%}
-textarea.title{resize:none;overflow:hidden;display:none;padding:.2rem .4rem}
+.edit-input{font:inherit;color:inherit;background:var(--hi);border:2px dashed var(--ink);border-radius:0;padding:.15rem .3rem;width:100%}
+textarea.title{resize:none;overflow:hidden;display:none;padding:.1rem .25rem}
 .editing textarea.title{display:block}
 #authorIn{flex:1}
-#yearIn{width:6rem;flex:none;text-align:right}
+#yearIn{width:5rem;flex:none;text-align:right}
 
 /* cover + sticker */
-.cover{position:relative;max-width:28rem;margin:1.75rem auto 2.4rem}
+.cover{position:relative;max-width:28rem;margin:.9rem auto 1.2rem}
 #coverLink{display:block;color:inherit}
 #coverImg{display:block;width:100%;height:auto;border-radius:14px}
 #coverImg[hidden]{display:none}
-.cover-empty{aspect-ratio:2/3;border:var(--line) solid var(--ink);border-radius:14px;display:grid;place-items:center;text-align:center;padding:1rem;font-size:1.1rem}
+.cover-empty{aspect-ratio:2/3;border:var(--line) solid var(--ink);border-radius:14px;display:grid;place-items:center;text-align:center;padding:.5rem;font-size:1.05rem}
 .cover-empty[hidden]{display:none}
 .overlay{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:3}
-.cover-tag{position:absolute;top:.6rem;left:.6rem;background:var(--ink);color:var(--bg);padding:.3rem .65rem;font-weight:700;font-size:.95rem;pointer-events:none}
-.editing .cover-tag{display:block}
-#stickerBox{position:absolute;right:-.4rem;bottom:-1.2rem;width:clamp(8.5rem,40vw,11rem);aspect-ratio:1;transform:rotate(-9deg);z-index:2}
+.cover-tag{position:absolute;top:.4rem;left:.4rem;background:var(--ink);color:var(--bg);padding:.2rem .45rem;font:400 .8rem var(--display);pointer-events:none}
+#stickerBox{position:absolute;right:-.2rem;bottom:-.6rem;width:clamp(8.5rem,40vw,11rem);aspect-ratio:1;transform:rotate(-9deg);z-index:4}
 #stickerBox[hidden]{display:none}
-#sticker{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink);text-decoration:none}
+#sticker{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink)}
 #sticker svg{position:absolute;inset:0;width:100%;height:100%}
-#stickerText{position:relative;font-weight:800;font-size:clamp(1.05rem,4.8vw,1.35rem);letter-spacing:.03em;white-space:nowrap}
+#stickerText{position:relative;font:400 1.1rem var(--display);letter-spacing:.03em;white-space:nowrap}
+#dueIn{position:relative;width:68%;text-align:center;font:400 1.1rem var(--display);color:var(--ink);background:transparent;border:2px dashed var(--ink);border-radius:0;padding:.1rem .2rem}
 
 /* edit tools */
-.tools{margin-top:1rem;border:var(--line) solid var(--ink);padding:1rem;gap:.8rem}
+.tools{margin-top:.5rem;border:var(--line) solid var(--ink);padding:.5rem;gap:.4rem}
 .editing .tools{display:grid}
-.tools p{font-size:1rem;line-height:1.35}
+.tools p{font-size:.95rem;line-height:1.3}
 .tools label{font-weight:700}
 .tools .edit-input{font-size:1rem}
-.btn{font:700 1rem var(--serif);color:var(--ink);background:var(--bg);border:var(--line) solid var(--ink);border-radius:0;padding:.8rem 1rem;cursor:pointer}
+.btn{font:700 1rem var(--serif);color:var(--ink);background:var(--bg);border:var(--line) solid var(--ink);border-radius:0;padding:.4rem .6rem;cursor:pointer}
 .btn:hover{background:var(--ink);color:var(--bg)}
 #saveState{min-height:1.3em;font-size:.95rem}
 </style>
@@ -110,15 +111,18 @@ textarea.title{resize:none;overflow:hidden;display:none;padding:.2rem .4rem}
     <input class="overlay edit-only" id="coverIn" type="file" accept="image/*" aria-label="Change cover photo">
     <span class="cover-tag edit-only">Change cover</span>
     <div id="stickerBox" hidden>
-      <a id="sticker"><span id="stickerText"></span></a>
-      <input class="overlay edit-only" id="dateIn" type="date" aria-label="Due date">
+      <div id="sticker">
+        <span class="view-only" id="stickerText"></span>
+        <input class="edit-only" id="dueIn" type="text" maxlength="14" placeholder="MAY 9th" aria-label="Due date text" autocomplete="off">
+      </div>
     </div>
   </div>
 
   <section class="tools edit-only" id="tools">
-    <p>Editing. Tap the cover to change it and the sticker to pick the due date. Changes save automatically.</p>
-    <label for="pdfIn">Google Drive PDF link</label>
+    <p>Editing. Tap the cover to change it. Type the due date as you want it shown, like MAY 9th. Changes save automatically.</p>
+    <label for="pdfIn">Google Drive PDF link (current book)</label>
     <input class="edit-input" id="pdfIn" type="url" placeholder="Paste the Drive share link" autocomplete="off">
+    <p>Links for earlier books can be fixed in History while editing.</p>
     <button class="btn" id="newBtn" type="button">Start new book</button>
     <div id="saveState" role="status"></div>
   </section>
@@ -143,36 +147,15 @@ const $ = id => document.getElementById(id);
 
 const BLANK = {title:"Your Book Title", author:"Author Name", year:"", due:"", pdf:"", cover:""};
 const NEW_BOOK = {...BLANK, title:"New Book"};
-const MONTHS = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
 
 let state = {current:{...BLANK}, history:[]};
 let editing = false;
 let pending = {};
 let timer = null;
+let histPending = {};
+let histTimer = null;
 
 /* ---------- helpers ---------- */
-function ord(n){
-  const t = n % 100;
-  if (t >= 11 && t <= 13) return n + "th";
-  return n + (["th","st","nd","rd"][n % 10] || "th");
-}
-function fmtDue(d){
-  const [, m, day] = d.split("-").map(Number);
-  return MONTHS[m-1] + " " + ord(day);
-}
-function calUrl(c){
-  const [y, m, d] = c.due.split("-").map(Number);
-  const f = x => x.toISOString().slice(0,10).replace(/-/g,"");
-  const start = new Date(Date.UTC(y, m-1, d));
-  const end = new Date(Date.UTC(y, m-1, d+1));
-  const p = new URLSearchParams({
-    action:"TEMPLATE",
-    text:"Finish reading: " + c.title,
-    dates:f(start) + "/" + f(end),
-    details:"Book club deadline for " + c.title + (c.author ? " by " + c.author : "") + "."
-  });
-  return "https://calendar.google.com/calendar/render?" + p.toString();
-}
 function pdfUrl(raw){
   raw = (raw || "").trim();
   if (!/^https?:\/\//i.test(raw)) return "";
@@ -182,11 +165,38 @@ function pdfUrl(raw){
   }
   return raw;
 }
-function autosize(el){
-  el.style.height = "auto";
-  el.style.height = el.scrollHeight + "px";
-}
 function setSave(text){ $("saveState").textContent = text; }
+
+/* Title: capped height, font shrinks to fit */
+function fitTitle(){
+  const el = editing ? $("titleIn") : $("titleView");
+  const maxH = Math.max(90, Math.min(window.innerWidth * 0.3, 150));
+  let size = Math.max(41.6, Math.min(window.innerWidth * 0.125, 89.6));
+  el.style.fontSize = size + "px";
+  el.style.height = "auto";
+  while (el.scrollHeight > maxH && size > 14){
+    size -= 1.5;
+    el.style.fontSize = size + "px";
+    el.style.height = "auto";
+  }
+  if (editing) el.style.height = el.scrollHeight + "px";
+}
+
+/* Sticker text: shrinks to stay inside the burst */
+function fitSticker(){
+  const box = $("stickerBox");
+  if (box.hidden || !box.clientWidth) return;
+  const el = editing ? $("dueIn") : $("stickerText");
+  const maxW = box.clientWidth * 0.68;
+  let size = Math.max(15, Math.min(window.innerWidth * 0.048, 22));
+  el.style.fontSize = size + "px";
+  const over = () => editing ? el.scrollWidth > el.clientWidth : el.offsetWidth > maxW;
+  while (over() && size > 9){
+    size -= 1;
+    el.style.fontSize = size + "px";
+  }
+}
+function fitAll(){ fitTitle(); fitSticker(); }
 
 /* ---------- starburst ---------- */
 (function(){
@@ -224,6 +234,26 @@ async function flush(){
   }
 }
 
+function queueHist(idx, value){
+  state.history[idx] = {...state.history[idx], pdf:value};
+  histPending[idx] = value;
+  setSave("Saving...");
+  clearTimeout(histTimer);
+  histTimer = setTimeout(flushHist, 350);
+}
+async function flushHist(){
+  clearTimeout(histTimer);
+  if (!Object.keys(histPending).length) return;
+  const list = state.history.map(b => ({...b}));
+  histPending = {};
+  try {
+    await updateDoc(ref, {history:list});
+    setSave("Saved");
+  } catch (e) {
+    setSave("Couldn't save. Check your connection and try again.");
+  }
+}
+
 /* ---------- render ---------- */
 function render(){
   const c = state.current;
@@ -233,14 +263,13 @@ function render(){
   $("titleView").textContent = c.title || "Untitled";
   $("authorView").textContent = c.author || "";
   $("yearView").textContent = c.year || "";
+  $("stickerText").textContent = c.due || "";
 
-  const fields = [["titleIn","title"],["authorIn","author"],["yearIn","year"],["pdfIn","pdf"]];
+  const fields = [["titleIn","title"],["authorIn","author"],["yearIn","year"],["dueIn","due"],["pdfIn","pdf"]];
   for (const [id, key] of fields){
     const el = $(id);
     if (document.activeElement !== el) el.value = c[key] || "";
   }
-  if (editing) autosize($("titleIn"));
-  if (document.activeElement !== $("dateIn")) $("dateIn").value = c.due || "";
 
   // cover
   const img = $("coverImg");
@@ -262,43 +291,50 @@ function render(){
   }
 
   // sticker
-  const box = $("stickerBox"), st = $("sticker");
-  box.hidden = !(c.due || editing);
-  $("stickerText").textContent = c.due ? fmtDue(c.due) : "SET DATE";
-  if (!editing && c.due){
-    st.href = calUrl(c); st.target = "_blank"; st.rel = "noopener";
-    st.setAttribute("aria-label", "Add " + c.title + " due date to Google Calendar");
-  } else {
-    st.removeAttribute("href"); st.removeAttribute("target");
-    st.removeAttribute("rel"); st.removeAttribute("aria-label");
+  $("stickerBox").hidden = !(c.due || editing);
+
+  // history (left alone while a link field in it is being typed in)
+  const panel = $("histPanel");
+  if (!panel.contains(document.activeElement)){
+    panel.replaceChildren();
+    const total = (state.history || []).length;
+    if (!total){
+      const p = document.createElement("div");
+      p.className = "hist-empty";
+      p.textContent = "No books yet.";
+      panel.append(p);
+    }
+    for (let i = total - 1; i >= 0; i--){
+      const b = state.history[i];
+      const u = pdfUrl(b.pdf);
+      const asLink = u && !editing;
+      const el = document.createElement(asLink ? "a" : "div");
+      el.className = "hist-item";
+      if (asLink){ el.href = u; el.target = "_blank"; el.rel = "noopener"; }
+      const t = document.createElement("strong");
+      t.textContent = b.title || "Untitled";
+      el.append(t);
+      const sub = [b.author, b.year].filter(Boolean).join(", ");
+      if (sub){
+        const s = document.createElement("small");
+        s.textContent = sub;
+        el.append(s);
+      }
+      if (editing){
+        const inp = document.createElement("input");
+        inp.type = "url";
+        inp.className = "edit-input";
+        inp.placeholder = "Drive link for this book";
+        inp.setAttribute("aria-label", "Drive link for " + (b.title || "this book"));
+        inp.value = b.pdf || "";
+        inp.addEventListener("input", e => queueHist(i, e.target.value.trim()));
+        el.append(inp);
+      }
+      panel.append(el);
+    }
   }
 
-  // history
-  const panel = $("histPanel");
-  panel.replaceChildren();
-  const items = [...(state.history || [])].reverse();
-  if (!items.length){
-    const p = document.createElement("div");
-    p.className = "hist-empty";
-    p.textContent = "No books yet.";
-    panel.append(p);
-  }
-  for (const b of items){
-    const u = pdfUrl(b.pdf);
-    const el = document.createElement(u ? "a" : "div");
-    el.className = "hist-item";
-    if (u){ el.href = u; el.target = "_blank"; el.rel = "noopener"; }
-    const t = document.createElement("strong");
-    t.textContent = b.title || "Untitled";
-    el.append(t);
-    const sub = [b.author, b.year].filter(Boolean).join(", ");
-    if (sub){
-      const s = document.createElement("small");
-      s.textContent = sub;
-      el.append(s);
-    }
-    panel.append(el);
-  }
+  fitAll();
 }
 
 function setMode(){
@@ -311,7 +347,7 @@ function setMode(){
 /* ---------- events ---------- */
 $("editBtn").addEventListener("click", () => {
   editing = !editing;
-  if (!editing) flush();
+  if (!editing){ flush(); flushHist(); }
   setMode();
 });
 
@@ -337,19 +373,22 @@ document.addEventListener("keydown", e => {
 
 $("titleIn").addEventListener("input", e => {
   queue("title", e.target.value);
-  autosize(e.target);
   $("titleView").textContent = e.target.value || "Untitled";
+  fitTitle();
 });
 $("titleIn").addEventListener("keydown", e => {
   if (e.key === "Enter"){ e.preventDefault(); e.target.blur(); }
 });
 $("authorIn").addEventListener("input", e => queue("author", e.target.value));
 $("yearIn").addEventListener("input", e => queue("year", e.target.value.replace(/\D/g, "")));
-$("pdfIn").addEventListener("input", e => queue("pdf", e.target.value.trim()));
-$("dateIn").addEventListener("change", e => {
+$("dueIn").addEventListener("input", e => {
   queue("due", e.target.value);
-  render();
+  fitSticker();
 });
+$("dueIn").addEventListener("keydown", e => {
+  if (e.key === "Enter"){ e.preventDefault(); e.target.blur(); }
+});
+$("pdfIn").addEventListener("input", e => queue("pdf", e.target.value.trim()));
 
 async function resizeCover(file){
   const bmp = await createImageBitmap(file);
@@ -379,7 +418,7 @@ $("coverIn").addEventListener("change", async e => {
 $("newBtn").addEventListener("click", async () => {
   const c = state.current;
   if (!confirm("Move \u201C" + (c.title || "Untitled") + "\u201D to History and start a new book?")) return;
-  flush();
+  await flush();
   try {
     await updateDoc(ref, {
       history: arrayUnion({title:c.title || "Untitled", author:c.author || "", year:c.year || "", pdf:c.pdf || ""}),
@@ -391,8 +430,8 @@ $("newBtn").addEventListener("click", async () => {
   }
 });
 
-window.addEventListener("resize", () => { if (editing) autosize($("titleIn")); });
-if (document.fonts) document.fonts.ready.then(() => { if (editing) autosize($("titleIn")); });
+window.addEventListener("resize", fitAll);
+if (document.fonts) document.fonts.ready.then(fitAll);
 
 /* ---------- live data ---------- */
 onSnapshot(ref, snap => {
@@ -401,7 +440,8 @@ onSnapshot(ref, snap => {
     return;
   }
   const d = snap.data();
-  state = {current:{...BLANK, ...d.current, ...pending}, history:d.history || []};
+  const hist = (d.history || []).map((b, i) => (i in histPending) ? {...b, pdf:histPending[i]} : b);
+  state = {current:{...BLANK, ...d.current, ...pending}, history:hist};
   $("msg").hidden = true;
   document.body.classList.remove("loading");
   render();
