@@ -10,7 +10,7 @@
   --bg:#d9d1bd;
   --hi:#e9e3d2;
   --ink:#000;
-  --sticker:#f9c66d;
+  --sticker:#e9e3d2;
   --line:3px;
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
   --display:"Boldstrom",Impact,"Arial Black",sans-serif;
@@ -19,14 +19,15 @@
 html{background:var(--bg)}
 body{background:var(--bg);color:var(--ink);font-family:var(--display);font-weight:400;min-height:100vh;border-bottom:var(--line) solid var(--ink)}
 :focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+input,textarea{letter-spacing:inherit}
 
 /* top bar */
-.bar{position:relative;z-index:6;display:grid;grid-template-columns:1fr 1fr;border-bottom:var(--line) solid var(--ink)}
+.bar{position:relative;z-index:6;width:min(100%,calc(46rem - 1.3rem));margin:0 auto;display:grid;grid-template-columns:1fr 1fr;border-left:var(--line) solid var(--ink);border-right:var(--line) solid var(--ink);border-bottom:var(--line) solid var(--ink)}
 .cell{font:400 .8rem/1 var(--display);letter-spacing:.08em;text-transform:uppercase;background:none;color:inherit;border:0;border-radius:0;padding:.55rem 0;cursor:pointer}
 .cell+.cell{border-left:var(--line) solid var(--ink)}
 .cell:hover{background:var(--hi)}
 .editing #editBtn{background:var(--ink);color:var(--bg)}
-#histPanel{position:absolute;left:0;right:0;top:calc(100% + var(--line));z-index:5;background:var(--bg);border-bottom:var(--line) solid var(--ink);max-height:60vh;overflow:auto}
+#histPanel{position:absolute;left:calc(var(--line) * -1);right:calc(var(--line) * -1);top:calc(100% + var(--line));z-index:5;background:var(--bg);border-left:var(--line) solid var(--ink);border-right:var(--line) solid var(--ink);border-bottom:var(--line) solid var(--ink);max-height:60vh;overflow:auto}
 #histPanel[hidden]{display:none}
 .hist-item{display:block;padding:.45rem .65rem;color:inherit;text-decoration:none;font-size:1rem;line-height:1.25}
 .hist-item+.hist-item,.hist-empty+.hist-item{border-top:2px solid var(--ink)}
@@ -37,39 +38,47 @@ strong{font-weight:400}
 .hist-empty{padding:.45rem .65rem}
 
 /* page */
-.wrap{max-width:46rem;margin:0 auto;padding:.65rem .65rem 1.5rem}
+.wrap{position:relative;max-width:46rem;margin:0 auto;padding:.65rem .65rem 1.5rem}
 .loading .wrap{visibility:hidden}
+#titleMirror{position:absolute;left:.65rem;right:.65rem;top:0;z-index:-1;visibility:hidden;pointer-events:none;border:2px solid transparent;padding:.1rem .25rem}
 #msg{padding:.5rem .65rem;font-weight:700}
 #msg[hidden]{display:none}
 
 .title{position:relative;z-index:3;font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,12.5vw,5.6rem);line-height:.95;text-transform:uppercase;overflow-wrap:anywhere}
-.meta{position:relative;z-index:1;display:flex;align-items:baseline;margin-top:.5rem;font-size:1.05rem;letter-spacing:.02em}
+.meta{position:relative;z-index:1;display:flex;align-items:center;margin-top:.5rem;font-size:1.05rem;letter-spacing:.02em}
 
 /* editing fields */
 .edit-only{display:none}
 .editing .edit-only{display:block}
 .editing .view-only{display:none}
+.editing h1.title.view-only{display:none}
+h1.title.view-only{display:block;width:100%;background:var(--hi);border:2px dashed var(--ink);padding:.1rem .25rem}
+#authorView{flex:1}
+#authorView,#authorIn{box-sizing:border-box;height:calc(1.365rem + .3rem + 4px);line-height:1.3;padding:.15rem .3rem;border:2px dashed var(--ink);background:var(--hi);white-space:nowrap;overflow:hidden}
+#authorView{display:flex;align-items:center}
+.editing #authorView{display:none}
+#authorView:empty::before{content:"\00a0"}
 .edit-input{font:inherit;color:inherit;background:var(--hi);border:2px dashed var(--ink);border-radius:0;padding:.15rem .3rem;width:100%}
 textarea.title.edit-input{resize:none;overflow:hidden;display:none;padding:.1rem .25rem;font-family:var(--display);line-height:.95;text-transform:uppercase;overflow-wrap:anywhere}
 .editing textarea.title.edit-input{display:block}
-#authorIn{flex:1}
+#authorIn{flex:1;width:100%}
 
 /* cover + sticker */
-.cover{position:relative;max-width:28rem;margin:.9rem auto 1.2rem}
+.cover{position:relative;margin:.9rem 0 1.2rem}
 #coverLink{display:block;color:inherit}
-#coverImg{display:block;width:100%;height:auto;border-radius:14px}
+#coverImg{display:block;width:100%;height:auto}
 #coverImg[hidden]{display:none}
-.cover-empty{aspect-ratio:2/3;border:var(--line) solid var(--ink);border-radius:14px;display:grid;place-items:center;text-align:center;padding:.5rem;font-size:1.05rem}
+.cover-empty{aspect-ratio:2/3;border:var(--line) solid var(--ink);display:grid;place-items:center;text-align:center;padding:.5rem;font-size:1.05rem}
 .cover-empty[hidden]{display:none}
 .overlay{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:1}
 .cover-tag{position:absolute;top:.4rem;left:.4rem;background:var(--ink);color:var(--bg);padding:.2rem .45rem;font:400 .8rem var(--display);pointer-events:none}
-#stickerBox{--s:clamp(7.5rem,36vw,9.5rem);position:absolute;right:.3rem;top:calc(var(--s) * -0.667);width:var(--s);aspect-ratio:1;transform:rotate(-9deg);z-index:2}
-.editing #stickerBox{z-index:4}
+#stickerBox{--s:clamp(7.5rem,36vw,9.5rem);position:absolute;right:.3rem;top:calc(var(--s) * -0.55);width:var(--s);aspect-ratio:1;transform:rotate(-9deg);z-index:20}
 #stickerBox[hidden]{display:none}
 #sticker{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink)}
-#sticker svg{position:absolute;inset:0;width:100%;height:100%}
+#sticker svg{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(1px 2px 2px rgba(0,0,0,.3))}
+#stickerLabel{position:absolute;left:0;right:0;top:23%;text-align:center;font:400 calc(var(--s) * 0.095) var(--display);letter-spacing:.04em;pointer-events:none}
 #stickerText{position:relative;font:400 1.4rem var(--display);letter-spacing:.02em;white-space:nowrap}
-#dueIn{position:relative;width:80%;text-align:center;font:400 1.4rem var(--display);color:var(--ink);background:transparent;border:2px dashed var(--ink);border-radius:0;padding:.05rem .1rem}
+#dueIn{position:relative;letter-spacing:.02em;width:80%;text-align:center;font:400 1.4rem var(--display);color:var(--ink);background:transparent;border:2px dashed var(--ink);border-radius:0;padding:.05rem .1rem}
 
 /* edit tools */
 .tools{margin-top:.5rem;border:var(--line) solid var(--ink);padding:.5rem;gap:.4rem}
@@ -93,6 +102,7 @@ textarea.title.edit-input{resize:none;overflow:hidden;display:none;padding:.1rem
 <div id="msg" hidden></div>
 
 <main class="wrap">
+  <div class="title" id="titleMirror" aria-hidden="true"></div>
   <h1 class="title view-only" id="titleView"></h1>
   <textarea class="title edit-input edit-only" id="titleIn" rows="1" aria-label="Book title" maxlength="120"></textarea>
 
@@ -110,6 +120,7 @@ textarea.title.edit-input{resize:none;overflow:hidden;display:none;padding:.1rem
     <span class="cover-tag edit-only">Change cover</span>
     <div id="stickerBox" hidden>
       <div id="sticker">
+        <span id="stickerLabel">finish by</span>
         <span class="view-only" id="stickerText"></span>
         <input class="edit-only" id="dueIn" type="text" maxlength="14" placeholder="MAY 9th" aria-label="Due date text" autocomplete="off">
       </div>
@@ -165,19 +176,21 @@ function pdfUrl(raw){
 }
 function setSave(text){ $("saveState").textContent = text; }
 
-/* Title: capped height, font shrinks to fit */
+/* Title: capped height, font shrinks to fit. A hidden mirror does the measuring
+   so the edit box is exactly the same size as the normal title. */
 function fitTitle(){
   const el = editing ? $("titleIn") : $("titleView");
+  const m = $("titleMirror");
+  m.textContent = (editing ? $("titleIn").value : $("titleView").textContent) || "\u00a0";
   const maxH = Math.max(90, Math.min(window.innerWidth * 0.3, 150));
   let size = Math.max(41.6, Math.min(window.innerWidth * 0.125, 89.6));
-  el.style.fontSize = size + "px";
-  el.style.height = "auto";
-  while (el.scrollHeight > maxH && size > 14){
+  m.style.fontSize = size + "px";
+  while (m.clientHeight > maxH && size > 14){
     size -= 1.5;
-    el.style.fontSize = size + "px";
-    el.style.height = "auto";
+    m.style.fontSize = size + "px";
   }
-  if (editing) el.style.height = el.scrollHeight + "px";
+  el.style.fontSize = size + "px";
+  el.style.height = editing ? m.offsetHeight + "px" : "";
 }
 
 /* Sticker text: shrinks to stay inside the burst */
@@ -194,7 +207,16 @@ function fitSticker(){
     el.style.fontSize = size + "px";
   }
 }
-function fitAll(){ fitTitle(); fitSticker(); }
+function fitAuthor(){
+  const el = editing ? $("authorIn") : $("authorView");
+  el.style.fontSize = "";
+  let size = parseFloat(getComputedStyle(el).fontSize);
+  while (el.scrollWidth > el.clientWidth && size > 9){
+    size -= 0.5;
+    el.style.fontSize = size + "px";
+  }
+}
+function fitAll(){ fitTitle(); fitAuthor(); fitSticker(); }
 
 /* ---------- starburst ---------- */
 (function(){
@@ -376,7 +398,7 @@ $("titleIn").addEventListener("input", e => {
 $("titleIn").addEventListener("keydown", e => {
   if (e.key === "Enter"){ e.preventDefault(); e.target.blur(); }
 });
-$("authorIn").addEventListener("input", e => queue("author", e.target.value));
+$("authorIn").addEventListener("input", e => { queue("author", e.target.value); fitAuthor(); });
 $("dueIn").addEventListener("input", e => {
   queue("due", e.target.value);
   fitSticker();
